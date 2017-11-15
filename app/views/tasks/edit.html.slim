@@ -1,13 +1,11 @@
-h3 = "Create task"
-= form_for @task, url: { action: :create } do |f|
+h3 = "Edit task #{@task.name}"
+= form_for @task, url: { action: :update } do |f|
   .form-group
     = f.text_field :name, class: 'form-control'
   .form-group
     = f.text_area :description, class: 'form-control'
   .form-group
-    = f.select :task_type, Task.task_types.keys.to_a.map { |w| [w.humanize, w] }, class: 'form-control'
-  .form-group
     = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }, class: 'form-control'
   .form-group
     = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }, class: 'from-control'
-  = f.submit 'Create'
+  = f.submit 'Update'
