@@ -9,3 +9,12 @@ h3 = "Edit task #{@task.name}"
   .form-group
     = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }, class: 'from-control'
   = f.submit 'Update'
+hr
+  h3 = "Comments"
+  - @comments.each do |comment|
+    - unless comment.body.nil?
+      p
+        b = "Comment body: "
+        = comment.body
+= render partial: '/comments/comment_form'
+= link_to 'Back', tasks_path

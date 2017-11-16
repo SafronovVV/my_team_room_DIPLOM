@@ -15,7 +15,10 @@ class TasksController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @comments = @task.comments
+    @comment = @comments.new
+  end
 
   def update
     if @task.update_attributes(update_params)
