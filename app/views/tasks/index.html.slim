@@ -3,7 +3,7 @@ h1 = 'Tasks'
 - @tasks.each do |task|
   hr
   h3
-    = link_to task.name, edit_task_path(task)
+    = link_to "\##{task.id} #{task.name}", edit_task_path(task)
   p
     b = "Status: "
     = task.status.humanize

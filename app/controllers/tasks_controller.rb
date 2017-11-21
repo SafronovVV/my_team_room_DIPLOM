@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :find_task, only: [:edit, :update]
+  before_action :find_comments, :new_comment, only: :edit
 
   def new
     @task = Task.new
@@ -16,8 +17,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @comments = @task.comments
-    @comment = @comments.new
   end
 
   def update
@@ -29,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all.order('priority DESC')
+    @tasks = Task.where.not(status: :closed).order('priority DESC')
   end
 
   private
@@ -44,5 +43,13 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :description, :status, :priority, :task_type)
+  end
+
+  def find_comments
+    @comments = @task.comments
+  end
+
+  def new_comment
+    @comment = @comments.new
   end
 end

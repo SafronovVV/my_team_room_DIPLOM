@@ -1,0 +1,8 @@
+h3 = "Messages"
+
+#messages[style="height: 500px; overflow: scroll"]
+  = render @messages
+form
+  .form-group
+    label[for='message-form'] = 'Write a message'
+    input[class='form-control' data-behavior='chat_speaker' id='message-form']

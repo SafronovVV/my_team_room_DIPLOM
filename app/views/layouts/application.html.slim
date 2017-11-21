@@ -20,4 +20,10 @@ html(data={the_log: Rails.env.development?})
     = csrf_meta_tags
 
     body
-      = yield
+      .container-fluid
+        .wrapper
+          .row
+            .col-md-9
+              = yield
+            .col-md-3
+              = render partial: 'messages/messages'
