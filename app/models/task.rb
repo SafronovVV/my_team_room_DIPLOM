@@ -3,6 +3,8 @@ class Task < ApplicationRecord
   validates :name, :task_type, presence: true
 
   has_many :comments, dependent: :destroy
+  belongs_to :team
+  belongs_to :user
 
   enum status: { opened: 0, in_progress: 1, code_review: 2, deffered: 3, closed: 4 }
   enum priority: { low: 0, normal: 1, high: 2, urgent: 3 }

@@ -1,3 +1,4 @@
+= link_to "Log out", destroy_user_session_path, method: :delete
 h1 = 'Tasks'
 
 - @tasks.each do |task|
@@ -13,5 +14,8 @@ h1 = 'Tasks'
   p
     b = "Type: "
     = task.task_type.humanize
+  p
+    b = "Created by: "
+    = task.user.username
 
 = link_to 'Create new task', new_task_path, class: 'btn btn-success'

@@ -4,11 +4,12 @@ class TasksController < ApplicationController
   before_action :find_comments, :new_comment, only: :edit
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
+    @task.team_id = current_user.team.id
     if @task.save
       redirect_to tasks_path
     else
@@ -28,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.where.not(status: :closed).order('priority DESC')
+    @tasks = current_user.team.tasks.where.not(status: :closed).order('priority DESC')
   end
 
   private
@@ -42,7 +43,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :status, :priority, :task_type)
+    params.require(:task).permit(:name, :description, :status, :priority, :task_type, :user_id, :team_id)
   end
 
   def find_comments

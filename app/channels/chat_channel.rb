@@ -8,6 +8,7 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    Message.create! body: data['message']
+    # Message.create! body: data['message']
+    current_user.messages.create!(body: data['message'])
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116165116) do
+ActiveRecord::Schema.define(version: 20171121115523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,13 +20,17 @@ ActiveRecord::Schema.define(version: 20171116165116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "task_id"
+    t.bigint "user_id"
     t.index ["task_id"], name: "index_comments_on_task_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -37,6 +41,41 @@ ActiveRecord::Schema.define(version: 20171116165116) do
     t.integer "task_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_tasks_on_team_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "captain_id"
+    t.index ["captain_id"], name: "index_teams_on_captain_id"
+  end
+
+  create_table "teams_users", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "user_id"
+    t.index ["team_id"], name: "index_teams_users_on_team_id"
+    t.index ["user_id", "team_id"], name: "index_teams_users_on_user_id_and_team_id"
+    t.index ["user_id"], name: "index_teams_users_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.integer "team_role", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email", "username"], name: "index_users_on_email_and_username", unique: true
+  end
+
+  add_foreign_key "teams", "users", column: "captain_id"
 end

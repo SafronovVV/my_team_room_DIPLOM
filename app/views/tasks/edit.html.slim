@@ -14,7 +14,7 @@ hr
   - @comments.each do |comment|
     - unless comment.body.nil?
       p
-        b = "Comment body: "
+        b = "#{comment.user.username}: "
         = comment.body
 = render partial: '/comments/comment_form'
 = link_to 'Back', tasks_path

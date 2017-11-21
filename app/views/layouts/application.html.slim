@@ -25,5 +25,6 @@ html(data={the_log: Rails.env.development?})
           .row
             .col-md-9
               = yield
-            .col-md-3
-              = render partial: 'messages/messages'
+            - if user_signed_in?
+              .col-md-3
+                = render partial: 'messages/messages'
