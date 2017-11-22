@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121115523) do
+ActiveRecord::Schema.define(version: 20171122053101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_chats_on_team_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
@@ -30,6 +37,8 @@ ActiveRecord::Schema.define(version: 20171121115523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "chat_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -48,7 +57,7 @@ ActiveRecord::Schema.define(version: 20171121115523) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "captain_id"
     t.index ["captain_id"], name: "index_teams_on_captain_id"
   end
@@ -74,6 +83,8 @@ ActiveRecord::Schema.define(version: 20171121115523) do
     t.integer "team_role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "chose_role", default: false
+    t.boolean "joined_team", default: false
     t.index ["email", "username"], name: "index_users_on_email_and_username", unique: true
   end
 

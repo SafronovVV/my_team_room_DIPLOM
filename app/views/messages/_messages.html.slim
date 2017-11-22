@@ -1,6 +1,6 @@
 h3 = "Messages"
 
-#messages[style="height: 500px; overflow: scroll"]
+#messages[style="height: 500px; overflow: scroll" data-chat-id="#{current_user.team.chat.id}"]
   = render @messages
 form
   .form-group

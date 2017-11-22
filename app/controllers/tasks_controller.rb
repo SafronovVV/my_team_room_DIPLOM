@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 
+  before_action :role_team_chosen?
   before_action :find_task, only: [:edit, :update]
   before_action :find_comments, :new_comment, only: :edit
 
@@ -43,7 +44,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :status, :priority, :task_type, :user_id, :team_id)
+    params.require(:task).permit(:name, :description, :status, :priority, :task_type)
   end
 
   def find_comments

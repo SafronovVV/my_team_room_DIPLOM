@@ -22,9 +22,10 @@ html(data={the_log: Rails.env.development?})
     body
       .container-fluid
         .wrapper
-          .row
-            .col-md-9
-              = yield
-            - if user_signed_in?
-              .col-md-3
-                = render partial: 'messages/messages'
+         = link_to 'Exit', destroy_user_session_path, method: :delete
+        .row
+          .col-md-9
+            = yield
+          - if user_signed_in? && current_user.chose_role? && current_user.joined_team?
+            .col-md-3
+              = render partial: 'messages/messages'

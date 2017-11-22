@@ -1,0 +1,9 @@
+h2 = "New team"
+
+= form_for @team, url: { action: :create } do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  = f.submit 'Create'
+
+= link_to 'Back to role', edit_users_team_role_path(current_user)

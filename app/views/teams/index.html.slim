@@ -1,0 +1,9 @@
+h2 = "Select the team to join"
+
+h3 = "Teams"
+
+- @teams.each do |team|
+  .team-block
+    = link_to team.name, update_team_path(team), method: :put
+
+= link_to 'Back to role', edit_users_team_role_path(current_user)
