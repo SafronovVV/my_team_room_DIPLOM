@@ -1,3 +1,26 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'application';
+
+td {
+  a{
+    color: $tr_darker;
+  }
+}
+.urgent{
+  background-color: $tr_lighter;
+  color: white;
+  a{
+    color: white;
+  }
+}
+
+.high{
+  background-color: $tr_lightest;
+  color: white;
+  a{
+    color: white;
+  }
+}

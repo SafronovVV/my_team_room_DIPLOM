@@ -1,4 +1,10 @@
-.message
-  p
-    b[style="color: #8AA8EB;"] = "#{message.user.username}: "
-    = message.body
+li.left.clearfix
+  span.chat-img.pull-left
+    img.img-circle alt=("User Avatar") src="/assets/default_user_logo.png" /
+  .chat-body.clearfix
+    .header
+      strong.primary-font = '@' + message.user.username
+      small.pull-right.text-muted
+        span.glyphicon.glyphicon-time
+        = message.created_at.strftime('%d.%m %H:%M')
+    p = message.body

@@ -30,7 +30,8 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = current_user.team.tasks.where.not(status: :closed).order('priority DESC')
+    @q = current_user.team.tasks.where.not(status: :closed).ransack(params[:q])
+    @tasks = @q.result(distinct: true)
   end
 
   private

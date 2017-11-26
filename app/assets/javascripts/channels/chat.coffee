@@ -1,6 +1,10 @@
 
-jQuery(document).on 'ready', ->
+jQuery(document).on 'turbolinks:load', ->
   messages = $('#messages')
+  $('#messages-block').scrollTop($('#messages-block')[0].scrollHeight)
+  $('#messages-block').bind('DOMNodeInserted DOMNodeRemoved', () ->
+    $('#messages-block').scrollTop($('#messages-block')[0].scrollHeight)
+  )
 
   App.global_chat = App.cable.subscriptions.create {
     channel: "ChatChannel"
@@ -14,17 +18,15 @@ jQuery(document).on 'ready', ->
 
     received: (data) ->
       $('#messages').append data['message']
+      $('#audio').get(0).play()
 
     send_message: (message, chat_id) ->
       @perform 'send_message', message: message, chat_id: chat_id
 
-  $(document).on 'keypress', '[data-behavior~=chat_speaker]', (event) ->
-    if event.keyCode is 13
-      App.global_chat.send_message event.target.value, messages.data('chat-id')
-      event.target.value = ''
-      event.preventDefault()
-  $(document).on 'ready', (event) ->
-    $("#messages").scrollTop($("#messages")[0].scrollHeight)
-    $('#messages').bind('DOMNodeInserted DOMNodeRemoved', () ->
-      $("#messages").scrollTop($("#messages")[0].scrollHeight)
-    )
+  $("button#btn-chat").on 'click', (event) ->
+    target = $('input#btn-input.form-control.input-sm')
+    if $(target).val() != ''
+      App.global_chat.send_message target.val(), messages.data('chat-id')
+      $(target).val('')
+    event.preventDefault()
+

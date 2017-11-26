@@ -1,9 +1,10 @@
-h2 = "New team"
-
-= form_for @team, url: { action: :create } do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: 'form-control'
-  = f.submit 'Create'
-
-= link_to 'Back to role', edit_users_team_role_path(current_user)
+.row.tr_register_screens
+  .col-md-4.col-md-offset-4.tr_team_select_modal
+    h2 = "New team"
+    = form_for @team, url: { action: :create } do |f|
+      .tr_form_group
+        = f.label :name
+        = f.text_field :name, class: 'tr_form_control'
+      .tr_form_group
+        = f.submit 'Create', class: 'tr_submit_button tr_form_control'
+      = link_to 'Back to role', edit_users_team_role_path(current_user), { class: 'tr_link' }

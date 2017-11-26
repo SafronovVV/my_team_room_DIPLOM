@@ -1,13 +1,21 @@
 h3 = "Create task"
 = form_for @task, url: { action: :create } do |f|
-  .form-group
-    = f.text_field :name, class: 'form-control'
-  .form-group
-    = f.text_area :description, class: 'form-control'
-  .form-group
-    = f.select :task_type, Task.task_types.keys.to_a.map { |w| [w.humanize, w] }, class: 'form-control'
-  .form-group
-    = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }, class: 'form-control'
-  .form-group
-    = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }, class: 'from-control'
-  = f.submit 'Create'
+  .tr_form_group
+    = f.label 'Theme'
+    = f.text_field :name, class: 'tr_form_control'
+  .tr_form_group
+    = f.label :description
+    = f.text_area :description, class: 'tr_form_control'
+  .tr_form_group
+    = f.label 'Type'
+    br
+    = f.select :task_type, Task.task_types.keys.to_a.map { |w| [w.humanize, w] }
+  .tr_form_group
+    = f.label :status
+    br
+    = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }
+  .tr_form_group
+    = f.label :priority
+    br
+    = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }
+  = f.submit 'Create', class: 'tr_submit_button'

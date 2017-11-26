@@ -1,4 +1,4 @@
 = form_for @comment, url: { controller: "comments", action: "create", task_id: @task.id }, html: { method: :post } do |f|
-  .form-group
-    = f.text_field :body, class: 'form-control'
-  = f.submit 'Add comment'
+  .tr_form_group
+    = f.text_field :body, class: 'tr_form_control'
+  = f.submit 'Add comment', class: 'tr_submit_button'

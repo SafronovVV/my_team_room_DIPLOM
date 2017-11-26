@@ -1,8 +1,17 @@
-h3 = "Messages"
+.panel.panel-primary
+  .panel-heading
+    span.glyphicon.glyphicon-comment
+    = ' #' + current_user.team.name
+  .panel-body#messages-block
+    ul#messages.chat[data-chat-id="#{current_user.team.chat.id}"]
+      = render @messages.order(:created_at)
+  form
+    .panel-footer
+      .input-group
+        input#btn-input.form-control.input-sm[data-behavior='chat_speaker']
+        span.input-group-btn
+          button#btn-chat.btn.btn-primary.btn-sm[data-behavior='chat_speaker']
+            | Send
 
-#messages[style="height: 500px; overflow: scroll" data-chat-id="#{current_user.team.chat.id}"]
-  = render @messages
-form
-  .form-group
-    label[for='message-form'] = 'Write a message'
-    input[class='form-control' data-behavior='chat_speaker' id='message-form']
+
+

@@ -1,3 +1,46 @@
 // Place all the styles related to the teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$tr_main: #5181b8;
+$tr_darker: #0f5d97;
+$tr_darkest: #002960;
+$tr_lighter: #96b6d7;
+$tr_lightest: #d1dce8;
+
+.tr_teams_modal{
+  background: white;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background: white;
+  padding: 20px 20px;
+}
+
+.tr_team_block{
+  width: 100%;
+  margin: 0;
+  background: $tr_main;
+  font-size: 16px;
+  padding: 10px 0px;
+  border-bottom: 1px solid white;
+  &:first-of-type{
+    margin-top: 20px;
+  }
+  &:last-of-type{
+    margin-bottom: 20px;
+  }
+  &:hover{
+    background: $tr_darker;
+  }
+  .tr_team_name{
+    color: white;
+    margin:0;
+  };
+  .tr_link{
+    color: white;
+    &:hover{
+      color: white;
+    }
+  };
+}

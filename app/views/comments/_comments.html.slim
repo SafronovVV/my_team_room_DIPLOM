@@ -1,0 +1,13 @@
+- @comments.each do |comment|
+  - unless comment.body.nil?
+    .row.comment
+      .col-md-1.col-xs-3
+        img.img-responsive.user-photo src="/assets/default_user_logo.png"
+      .col-md-6.col-xs-9
+        .comment-panel.panel.panel-default
+          .panel-heading
+            strong = '@' + comment.user.username
+            span.text-muted
+            = ' commented ' + time_ago_in_words(comment.created_at) + ' ago'
+          .panel-comment-body
+            = comment.body

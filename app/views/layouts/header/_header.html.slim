@@ -1,0 +1,42 @@
+/ nav.navbar.navbar-inverse
+/   .container-fluid
+/     .navbar-header
+/       = link_to '#' + current_user.team.name, root_path, class: 'navbar-brand'
+/     ul.nav.navbar-nav
+/       li
+/         = link_to new_task_path
+/           .fa.fa-plus
+/           | &nbspNew task
+/     ul.nav.navbar-nav.navbar-right
+/       li
+/         = link_to destroy_user_session_path, method: :delete
+/           span.glyphicon.glyphicon-log-in
+/           | Exit
+/     ul.nav.navbar-nav.navbar-right
+/       li
+/         button[type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav.navbar-nav"]
+/           span.icon-bar
+/           span.icon-bar
+/           span.icon-bar
+
+
+.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to '#' + current_user.team.name, root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          = link_to new_task_path
+            .fa.fa-plus
+            | &nbspNew task
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to destroy_user_session_path, method: :delete
+            span.glyphicon.glyphicon-log-in
+            | Exit
+

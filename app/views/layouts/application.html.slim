@@ -4,6 +4,7 @@ html(data={the_log: Rails.env.development?})
   head
     meta charset="utf-8"
     title = "Test"
+    meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"
 
     = stylesheet_link_tag :application,
       'data-turbolinks-track' => true, media: :all
@@ -18,14 +19,17 @@ html(data={the_log: Rails.env.development?})
     4.3.0/css/font-awesome.min.css")
 
     = csrf_meta_tags
-
     body
-      .container-fluid
-        .wrapper
-         = link_to 'Exit', destroy_user_session_path, method: :delete
-        .row
-          .col-md-9
-            = yield
-          - if user_signed_in? && current_user.chose_role? && current_user.joined_team?
-            .col-md-3
+      audio[id="audio" src="assets/telegram.wav"]
+      - if user_signed_in? && current_user.chose_role? && current_user.joined_team?
+        = render partial: 'layouts/header/header'
+        .container-fluid
+          .row
+            .col-md-8.col-xs-12
+              = yield
+            .col-md-4.hidden-xs
               = render partial: 'messages/messages'
+      - else
+        .row
+          .col-md-12
+            = yield

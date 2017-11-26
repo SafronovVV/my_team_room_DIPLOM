@@ -1,20 +1,50 @@
-h1 = 'Tasks'
+h2 = 'Tasks'
+table.table
+  thead
+    tr
+      th = sort_link(@q, :id, '#')
+      th = sort_link(@q, :name, 'Theme')
+      th = sort_link(@q, :status, 'Status')
+      th.hidden-xs = sort_link(@q, :priority, 'Priority')
+      th = sort_link(@q, :task_type, 'Task type')
+      th.hidden-xs = sort_link(@q, :user_id, 'Created by')
+      th.hidden-xs = sort_link(@q, :updated_at, 'Updated')
+  tbody
+  - @tasks.each do |task|
+    - if task.low?
+      tr.success
+        td = task.id
+        td = link_to task.name, edit_task_path(task)
+        td = task.status.humanize
+        td.hidden-xs = task.priority.humanize
+        td = task.task_type.humanize
+        td.hidden-xs = task.user.username
+        td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
+    -elsif task.normal?
+      tr.active
+        td = task.id
+        td = link_to task.name, edit_task_path(task)
+        td = task.status.humanize
+        td.hidden-xs = task.priority.humanize
+        td = task.task_type.humanize
+        td.hidden-xs = task.user.username
+        td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
+    -elsif task.high?
+      tr.warning
+        td = task.id
+        td = link_to task.name, edit_task_path(task)
+        td = task.status.humanize
+        td.hidden-xs = task.priority.humanize
+        td = task.task_type.humanize
+        td.hidden-xs = task.user.username
+        td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
+    -else
+      tr.danger
+        td = task.id
+        td = link_to task.name, edit_task_path(task)
+        td = task.status.humanize
+        td.hidden-xs = task.priority.humanize
+        td = task.task_type.humanize
+        td.hidden-xs = task.user.username
+        td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
 
-- @tasks.each do |task|
-  hr
-  h3
-    = link_to "\##{task.id} #{task.name}", edit_task_path(task)
-  p
-    b = "Status: "
-    = task.status.humanize
-  p
-    b = "Priority: "
-    = task.priority.humanize
-  p
-    b = "Type: "
-    = task.task_type.humanize
-  p
-    b = "Created by: "
-    = task.user.username
-
-= link_to 'Create new task', new_task_path, class: 'btn btn-success'

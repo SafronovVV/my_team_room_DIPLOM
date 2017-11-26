@@ -1,0 +1,134 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+
+/* APPLICATION STYLE COLORS AND NAMES
+*/
+
+/*TR - TeamRoom abreviature for all styles
+
+MAIN COLORS
+*/
+
+// $tr_main: #B34D5E;
+// $tr_darker: #A14554;
+// $tr_darkest: #002960;
+// $tr_lighter: #E0B7BE;
+// $tr_lightest: #F7EDEE;
+
+$tr_main: #5181b8;
+$tr_darker: #0f5d97;
+$tr_darkest: #002960;
+$tr_lighter: #96b6d7;
+$tr_lightest: #d1dce8;
+
+// FOR FORM ELEMENTS
+
+.tr_form_group{
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.tr_form_control{
+  width: 100%;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+input.tr_form_control, textarea.tr_form_control{
+  padding: 5px 10px;
+  border: 1px solid $tr_main;
+  &:focus{
+  outline: 0;
+  };
+}
+
+textarea {
+   resize: none;
+   height: 100px;
+}
+
+select{
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   border-radius: 0px;
+   padding: 5px 10px;
+   background: white;
+   border: 1px solid $tr_main;
+   background: url(select_arrow) no-repeat 100% 0;
+   width: 200px;
+  &:focus{
+    outline: 0;
+  }
+}
+
+.tr_submit_button{
+  background: $tr_main;
+  border: 1px solid $tr_main;
+  border-radius: 0px;
+  color: white;
+  padding: 10px 15px;
+  &:hover{
+    background: white;
+    color: $tr_main;
+  };
+}
+
+.tr_button_inverse{
+  background: white;
+  border: 1px solid $tr_lighter;
+  border-radius: 0px;
+  color: $tr_main;
+  font-size: 18px;
+  padding: 5px 15px;
+  &:hover{
+    text-decoration: none;
+    border: 1px solid white;
+    background: $tr_main;
+    color: white;
+  };
+  .badge-danger{
+    background-color: red;
+    font-size: 2px;
+    padding: 2px 5px;
+  }
+}
+
+// TeamRoom ELEMENTS
+
+.tr_link{
+  color: $tr_main;
+  &:hover{
+    color: $tr_lighter;
+  };
+}
+
+.tr_register_screens{
+  background: $tr_lightest;
+  height: 100vh;
+  overflow: auto;
+}
+
+.tr_login_modal, .tr_register_modal, .tr_role_modal, .tr_team_select_modal{
+  margin-top: 10%;
+  background: white;
+  padding: 20px 20px;
+}
+
