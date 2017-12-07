@@ -13,8 +13,10 @@ class TeamsController < ApplicationController
     if @team.save && @team.users << @user
       @chat = Chat.create!(team_id: @team.id)
       @user.update(joined_team: true, chose_role: true)
+      flash[:success] = 'You created a team!'
       redirect_to root_path
     else
+      flash[:error] = record_errors(@team)
       render 'new'
     end
   end
@@ -23,6 +25,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     if @team.users << @user
       @user.update_attributes(joined_team: true, chose_role: true)
+      flash[:success] = 'You joined a team!'
       redirect_to root_path
     else
       render 'index'

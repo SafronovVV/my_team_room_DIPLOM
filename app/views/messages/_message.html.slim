@@ -1,9 +1,9 @@
 li.left.clearfix
   span.chat-img.pull-left
-    img.img-circle alt=("User Avatar") src="/assets/default_user_logo.png" /
+    = image_tag message.user.avatar.url(:profile), class: 'img-circle'
   .chat-body.clearfix
     .header
-      strong.primary-font = '@' + message.user.username
+      strong.primary-font = link_to "@#{message.user.username }", user_path(message.user)
       small.pull-right.text-muted
         span.glyphicon.glyphicon-time
         = message.created_at.strftime('%d.%m %H:%M')

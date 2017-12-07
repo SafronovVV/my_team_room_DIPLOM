@@ -24,19 +24,26 @@
 MAIN COLORS
 */
 
-// $tr_main: #B34D5E;
-// $tr_darker: #A14554;
-// $tr_darkest: #002960;
-// $tr_lighter: #E0B7BE;
-// $tr_lightest: #F7EDEE;
+$tr_main: #0088cc;
+$tr_darker: #236093;
+$tr_darkest: #236093;
+$tr_lighter: #a4cee6;
+$tr_lightest: #c7e5f6;
 
-$tr_main: #5181b8;
-$tr_darker: #0f5d97;
-$tr_darkest: #002960;
-$tr_lighter: #96b6d7;
-$tr_lightest: #d1dce8;
+// $tr_main: #5181b8;
+// $tr_darker: #0f5d97;
+// $tr_darkest: #002960;
+// $tr_lighter: #96b6d7;
+// $tr_lightest: #d1dce8;
 
 // FOR FORM ELEMENTS
+
+.alert{
+  border: 1px solid $tr_main;
+  border-radius: 3px;
+  background: $tr_lightest;
+  color: $tr_main;
+}
 
 .tr_form_group{
   margin-bottom: 15px;
@@ -54,6 +61,7 @@ html, body {
 input.tr_form_control, textarea.tr_form_control{
   padding: 5px 10px;
   border: 1px solid $tr_main;
+  border-radius: 3px;
   &:focus{
   outline: 0;
   };
@@ -68,7 +76,7 @@ select{
   -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
-   border-radius: 0px;
+   border-radius: 3px;
    padding: 5px 10px;
    background: white;
    border: 1px solid $tr_main;
@@ -82,7 +90,7 @@ select{
 .tr_submit_button{
   background: $tr_main;
   border: 1px solid $tr_main;
-  border-radius: 0px;
+  border-radius: 3px;
   color: white;
   padding: 10px 15px;
   &:hover{
@@ -94,7 +102,7 @@ select{
 .tr_button_inverse{
   background: white;
   border: 1px solid $tr_lighter;
-  border-radius: 0px;
+  border-radius: 3px;
   color: $tr_main;
   font-size: 18px;
   padding: 5px 15px;

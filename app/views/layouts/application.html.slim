@@ -25,11 +25,16 @@ html(data={the_log: Rails.env.development?})
         = render partial: 'layouts/header/header'
         .container-fluid
           .row
-            .col-md-8.col-xs-12
-              = yield
             .col-md-4.hidden-xs
-              = render partial: 'messages/messages'
+              = render partial: 'messages/messages', cached: true
+            .col-md-8.col-xs-12
+              = flash_messages
+              = yield
+
       - else
         .row
           .col-md-12
-            = yield
+            .row.tr_register_screens
+              .col-md-4.col-md-offset-4.tr_login_modal.tr_register_modal.tr_role_modal.tr_team_select_modal
+                = flash_messages
+                = yield

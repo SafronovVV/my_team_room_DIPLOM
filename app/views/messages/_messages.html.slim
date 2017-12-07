@@ -1,7 +1,7 @@
 .panel.panel-primary
   .panel-heading
     span.glyphicon.glyphicon-comment
-    = ' #' + current_user.team.name
+    = ' Chat'
   .panel-body#messages-block
     ul#messages.chat[data-chat-id="#{current_user.team.chat.id}"]
       = render @messages.order(:created_at)

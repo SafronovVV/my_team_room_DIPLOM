@@ -24,3 +24,10 @@ td {
     color: white;
   }
 }
+
+.progress{
+  border-radius: 3px;
+  .progress-bar{
+    background-color: $tr_main;
+  }
+}

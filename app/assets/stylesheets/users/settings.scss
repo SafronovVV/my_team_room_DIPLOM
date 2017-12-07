@@ -1,0 +1,25 @@
+// Place all the styles related to the users/settings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'application';
+
+.avatar-block{
+  img.profile-photo{
+    max-width: 100%;
+    max-height: auto;
+  }
+  .image-block{
+    width: 200px;
+    border: 1px solid $tr_main;
+    padding: 0px;
+    border-radius: 3px;
+    img{
+      margin: 0px;
+    }
+    .tr_submit_button{
+      margin:0px;
+      border: 0px;
+      border-radius: 0px;
+    }
+  }
+}

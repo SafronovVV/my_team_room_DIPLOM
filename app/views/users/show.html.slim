@@ -1,0 +1,33 @@
+/ h2 User profile
+/ hr
+.row.user-profile
+  .col-md-3.avatar-block
+    .image-block
+      = image_tag @user.avatar.url(:profile), class: 'profile-photo'
+    -if current_user == @user
+      = link_to edit_users_setting_path(current_user), class: 'tr_submit_button'
+        .fa.fa-cog
+        |&nbspSettings
+  .col-md-8.user-profile-info
+    h3 = '@' + @user.username
+    h4 = @user.team_role.humanize
+    .profile-info-block
+      .fa.fa-map-marker
+      b = ' Team: '
+      = @user.team.name
+    .profile-info-block
+      .fa.fa-envelope
+      b = ' Email: '
+      = @user.email
+    .profile-info-block
+      .fa.fa-tasks
+      b = ' Appointed tasks: '
+      = @user.appointed_tasks.count
+    .profile-info-block
+      .fa.fa-birthday-cake
+      b = ' Registered: '
+      = @user.created_at.strftime('%d.%m.%y')
+
+
+
+

@@ -1,50 +1,54 @@
-h2 = 'Tasks'
 table.table
   thead
     tr
       th = sort_link(@q, :id, '#')
-      th = sort_link(@q, :name, 'Theme')
+      th.hidden-xs = sort_link(@q, :name, 'Theme')
       th = sort_link(@q, :status, 'Status')
       th.hidden-xs = sort_link(@q, :priority, 'Priority')
-      th = sort_link(@q, :task_type, 'Task type')
-      th.hidden-xs = sort_link(@q, :user_id, 'Created by')
+      th.hidden-xs = sort_link(@q, :task_type, 'Task type')
+      th = sort_link(@q, :percentage, 'Ready')
+      th = sort_link(@q, :appointed_to_id, 'Appointed to')
       th.hidden-xs = sort_link(@q, :updated_at, 'Updated')
   tbody
   - @tasks.each do |task|
     - if task.low?
       tr.success
-        td = task.id
-        td = link_to task.name, edit_task_path(task)
+        td = link_to task.id, edit_task_path(task)
+        td.hidden-xs = link_to task.name, edit_task_path(task)
         td = task.status.humanize
         td.hidden-xs = task.priority.humanize
-        td = task.task_type.humanize
-        td.hidden-xs = task.user.username
+        td.hidden-xs = task.task_type.humanize
+        td = "#{task.percentage}%"
+        td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
         td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
     -elsif task.normal?
       tr.active
-        td = task.id
-        td = link_to task.name, edit_task_path(task)
+        td = link_to task.id, edit_task_path(task)
+        td.hidden-xs = link_to task.name, edit_task_path(task)
         td = task.status.humanize
         td.hidden-xs = task.priority.humanize
-        td = task.task_type.humanize
-        td.hidden-xs = task.user.username
+        td.hidden-xs = task.task_type.humanize
+        td = "#{task.percentage}%"
+        td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
         td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
     -elsif task.high?
       tr.warning
-        td = task.id
-        td = link_to task.name, edit_task_path(task)
+        td = link_to task.id, edit_task_path(task)
+        td.hidden-xs = link_to task.name, edit_task_path(task)
         td = task.status.humanize
         td.hidden-xs = task.priority.humanize
-        td = task.task_type.humanize
-        td.hidden-xs = task.user.username
+        td.hidden-xs = task.task_type.humanize
+        td = "#{task.percentage}%"
+        td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
         td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
     -else
       tr.danger
-        td = task.id
-        td = link_to task.name, edit_task_path(task)
+        td = link_to task.id, edit_task_path(task)
+        td.hidden-xs = link_to task.name, edit_task_path(task)
         td = task.status.humanize
         td.hidden-xs = task.priority.humanize
-        td = task.task_type.humanize
-        td.hidden-xs = task.user.username
+        td.hidden-xs= task.task_type.humanize
+        td = "#{task.percentage}%"
+        td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
         td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
 

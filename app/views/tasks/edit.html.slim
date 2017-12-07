@@ -1,22 +1,37 @@
-h3 = '#' + @task.id.to_s + ' - ' + @task.name
-= form_for @task, url: { action: :update } do |f|
-  .tr_form_group
-    = f.label 'Theme'
-    = f.text_field :name, class: 'tr_form_control'
-  .tr_form_group
-    = f.label :description
-    = f.text_area :description, class: 'tr_form_control'
-  .tr_form_group
-    = f.label :status
-    br
-    = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }
-  .tr_form_group
-    = f.label :priority
-    br
-    = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }
-  = f.submit 'Update', class: 'tr_submit_button'
-hr
-h3 = @comments.count.to_s + ' comments'
-= render partial: '/comments/comment_form'
-= render partial: '/comments/comments'
+h2 = '#' + @task.id.to_s + ' - ' + @task.name
+.progress
+  .progress-bar role="progressbar" style="width:#{@task.percentage}%"
+    - if @task.percentage != 0
+      = "#{@task.percentage}%"
+.row
+  .col-md-9
+    = form_for @task, url: { action: :update } do |f|
+      / .tr_form_group
+      /   = f.label 'Theme'
+      /   = f.text_field :name, class: 'tr_form_control'
+      .tr_form_group
+        = f.label :description
+        = f.text_area :description, class: 'tr_form_control'
+      .tr_form_group
+        = f.label :status
+        br
+        = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }
+      .tr_form_group
+        = f.label :priority
+        br
+        = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }
+      .tr_form_group
+        = f.label 'Ready'
+        br
+        = f.select :percentage, options_for_select((0..100).step(10).to_a.map{|s| ["#{s}%", s]}, @task.percentage)
+      .tr_form_group
+        = f.label 'Appointed to'
+        br
+        = f.select :appointed_to_id, @task.team.users.to_a.map { |w| [w.username, w.id] }
+      = f.submit 'Update', class: 'tr_submit_button'
+    hr
+  .col-md-12.comments-block
+    h3 = @comments.count.to_s + ' comments'
+    = render partial: '/comments/comment_form'
+    = render partial: '/comments/comments'
 

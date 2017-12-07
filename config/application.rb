@@ -13,5 +13,10 @@ module TeamRoom
     config.generators do |g|
       g.template_engine :slim
     end
+    config.action_view.prefix_partial_path_with_controller_namespace = false
+    # config.to_prepare do
+    #   Devise::SessionsController.skip_before_action :registration_completed?
+    #   Devise::RegistrationsController.skip_before_action :registration_completed?
+    # end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122053101) do
+ActiveRecord::Schema.define(version: 20171128185323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(version: 20171122053101) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "team_id"
+    t.bigint "appointed_to_id"
+    t.integer "percentage", default: 0
+    t.index ["appointed_to_id"], name: "index_tasks_on_appointed_to_id"
     t.index ["team_id"], name: "index_tasks_on_team_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -85,8 +88,14 @@ ActiveRecord::Schema.define(version: 20171122053101) do
     t.datetime "updated_at", null: false
     t.boolean "chose_role", default: false
     t.boolean "joined_team", default: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer "interface_color"
     t.index ["email", "username"], name: "index_users_on_email_and_username", unique: true
   end
 
+  add_foreign_key "tasks", "users", column: "appointed_to_id"
   add_foreign_key "teams", "users", column: "captain_id"
 end

@@ -1,15 +1,14 @@
-.row.tr_register_screens
-  .col-md-4.col-md-offset-4.tr_login_modal
-    h2 = 'Log in'
 
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = devise_error_messages!
-      .tr_form_group
-        = f.label :username
-        = f.text_field :username, class: 'tr_form_control'
-      .form-group
-        = f.label :password
-        = f.password_field :password, class: 'tr_form_control'
-      .tr_form_group
-        = f.submit 'Log in', class: 'tr_submit_button tr_form_control'
-      = render "devise/shared/links"
+h2 = 'Log in'
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = devise_error_messages!
+  .tr_form_group
+    = f.label :username
+    = f.text_field :username, class: 'tr_form_control'
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'tr_form_control'
+  .tr_form_group
+    = f.submit 'Log in', class: 'tr_submit_button tr_form_control'
+  = render "devise/shared/links"

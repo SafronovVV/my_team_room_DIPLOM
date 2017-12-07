@@ -2,12 +2,13 @@
   - unless comment.body.nil?
     .row.comment
       .col-md-1.col-xs-3
-        img.img-responsive.user-photo src="/assets/default_user_logo.png"
+        .comment-image
+          = image_tag comment.user.avatar.url(:profile), class: 'img-responsive.user-photo'
       .col-md-6.col-xs-9
         .comment-panel.panel.panel-default
           .panel-heading
-            strong = '@' + comment.user.username
-            span.text-muted
+            strong = link_to "@#{comment.user.username }", user_path(comment.user)
+            span.text-muted.hidden-xs
             = ' commented ' + time_ago_in_words(comment.created_at) + ' ago'
           .panel-comment-body
             = comment.body

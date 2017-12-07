@@ -1,8 +1,7 @@
-.row.tr_register_screens
-  .col-md-4.col-md-offset-4.tr_role_modal
-    h2 = "Select role"
-    = form_for @user, url: { action: :update} do |f|
-      .tr_form_group
-        = f.select :team_role, User.team_roles.keys.to_a.map { |w| [w.humanize, w] }, {}, {class: 'tr_form_control'}
-      .tr_form_group
-        = f.submit 'Process', class: 'tr_form_control tr_submit_button'
+
+h2 = "Select role"
+= form_for @user, url: { action: :update} do |f|
+  .tr_form_group
+    = f.select :team_role, User.team_roles.keys.to_a.map { |w| [w.humanize, w] }, {}, {class: 'tr_form_control'}
+  .tr_form_group
+    = f.submit 'Process', class: 'tr_form_control tr_submit_button'

@@ -1,0 +1,29 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'application';
+
+.row.user-profile{
+  a{
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .image-block{
+    width: 210px;
+    height: 210px;
+    padding: 5px;
+    background: $tr_lightest;
+    margin-bottom: 20px;
+    border-radius: 3px;
+  }
+  .user-profile-info{
+    h4{
+      color: $tr_main;
+    }
+    .profile-info-block{
+      color: #777777;
+    }
+  }
+}

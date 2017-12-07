@@ -6,14 +6,16 @@
 
 .panel.panel-primary{
   .panel-heading{
-    border-radius: 0px;
+    border-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     border: 1px solid $tr_main;
     background-color: $tr_main;
     span.glyphicon.glyphicon-comment{
       margin-right: 10px;
     }
   }
-  border-radius: 0px;
+  border-radius: 3px;
   border: 1px solid $tr_main;
 }
 
@@ -78,6 +80,11 @@ img.img-circle{
     -webkit-box-shadow: none;
     border: 1px solid $tr_main;
   }
+}
+#btn-chat{
+  border: 1px solid $tr_main;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .btn.btn-primary.btn-sm{
