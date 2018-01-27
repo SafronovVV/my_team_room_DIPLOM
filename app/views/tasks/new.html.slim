@@ -23,4 +23,8 @@
         = f.label 'Appointed to'
         br
         = f.select :appointed_to_id, options_for_select(current_user.team.users.collect{ |u| [u.username, u.id] })
+      .tr_form_group
+        = f.label 'Parent_task'
+        br
+        = f.select :parent_task_id, options_for_select(current_user.team.tasks.collect{ |task| [task.name, task.id] }), {include_blank: 'No parent'}
       = f.submit 'Create', class: 'tr_submit_button'

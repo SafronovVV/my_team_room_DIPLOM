@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128185323) do
+ActiveRecord::Schema.define(version: 20171207173033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,9 @@ ActiveRecord::Schema.define(version: 20171128185323) do
     t.bigint "team_id"
     t.bigint "appointed_to_id"
     t.integer "percentage", default: 0
+    t.bigint "parent_task_id"
     t.index ["appointed_to_id"], name: "index_tasks_on_appointed_to_id"
+    t.index ["parent_task_id"], name: "index_tasks_on_parent_task_id"
     t.index ["team_id"], name: "index_tasks_on_team_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end

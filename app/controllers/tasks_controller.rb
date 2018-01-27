@@ -12,6 +12,10 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
     @task.team_id = current_user.team.id
     if @task.save
+      if @task.parent_task_id
+        @parent_task = Task.find(@task.parent_task_id)
+        @parent_task.subtasks << @task
+      end
       @task.appointed_to.appointed_tasks << @task
       flash[:success] = 'Task was created!'
       redirect_to tasks_path
@@ -54,7 +58,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :status, :priority, :task_type, :percentage, :appointed_to_id)
+    params.require(:task).permit(:name, :description, :status, :priority, :task_type, :percentage, :appointed_to_id, :parent_task_id)
   end
 
   def find_comments

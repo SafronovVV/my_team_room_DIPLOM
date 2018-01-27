@@ -4,6 +4,8 @@ class Task < ApplicationRecord
   belongs_to :team
   belongs_to :user
   belongs_to :appointed_to, class_name: 'User'
+  has_many :subtasks, class_name: 'Task', foreign_key: :parent_task_id
+  belongs_to :parent_task, class_name: 'Task', optional: true
 
 
   enum status: { opened: 0, in_progress: 1, code_review: 2, repair: 3, deffered: 4, closed: 5 }

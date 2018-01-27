@@ -1,8 +1,29 @@
-h2 = '#' + @task.id.to_s + ' - ' + @task.name
+.row
+  .col-md-11
+    h2 = '#' + @task.id.to_s + ' - ' + @task.name
+  - if @task.parent_task
+    .col-md-1
+      = link_to edit_task_path(@task.parent_task)
+        .fa.fa-arrow-up
 .progress
   .progress-bar role="progressbar" style="width:#{@task.percentage}%"
     - if @task.percentage != 0
       = "#{@task.percentage}%"
+- if @task.subtasks.length > 0
+  h3 Subtasks
+  table.table
+    thead
+      tr
+        th = '#'
+        th.hidden-xs = 'Theme'
+        th = 'Status'
+        th.hidden-xs = 'Priority'
+        th.hidden-xs = 'Task type'
+        th = 'Ready'
+        th = 'Appointed to'
+        th.hidden-xs = 'Updated'
+    tbody
+      = render @task.subtasks
 .row
   .col-md-9
     = form_for @task, url: { action: :update } do |f|

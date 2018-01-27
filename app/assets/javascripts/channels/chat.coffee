@@ -5,7 +5,6 @@ jQuery(document).on 'turbolinks:load', ->
   $('#messages-block').bind('DOMNodeInserted DOMNodeRemoved', () ->
     $('#messages-block').scrollTop($('#messages-block')[0].scrollHeight)
   )
-
   App.global_chat = App.cable.subscriptions.create {
     channel: "ChatChannel"
     chat_id: messages.data('chat-id')
