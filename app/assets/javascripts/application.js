@@ -11,8 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+$(document).ready(() => {
+  const current_path = window.location.pathname;
+  $(`a[href='${current_path}']`).parent().addClass('current');
+});

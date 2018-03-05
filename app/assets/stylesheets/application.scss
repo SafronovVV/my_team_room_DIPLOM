@@ -140,3 +140,12 @@ select{
   padding: 20px 20px;
 }
 
+
+// BOOTSTRAP RESTYLE
+
+ul.nav.navbar-nav {
+  li.current {
+    background-color: $tr_darker !important;
+  }
+}
+
