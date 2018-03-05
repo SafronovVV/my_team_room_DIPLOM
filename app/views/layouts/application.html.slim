@@ -20,7 +20,6 @@ html(data={the_log: Rails.env.development?})
 
     = csrf_meta_tags
     body
-      audio[id="audio" src="assets/telegram.wav"]
       - if user_signed_in? && current_user.chose_role? && current_user.joined_team?
         = render partial: 'layouts/header/header'
         .container-fluid
