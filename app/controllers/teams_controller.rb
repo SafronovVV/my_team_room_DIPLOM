@@ -21,21 +21,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  def update
-    @team = Team.find(params[:id])
-    if @team.users << @user
-      @user.update_attributes(joined_team: true, chose_role: true)
-      flash[:success] = 'You joined a team!'
-      redirect_to root_path
-    else
-      render 'index'
-    end
-  end
-
-  def index
-    @teams = Team.all
-  end
-
   private
 
   def team_params

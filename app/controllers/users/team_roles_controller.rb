@@ -10,7 +10,7 @@ class Users::TeamRolesController < ApplicationController
       if @user.team_role == 'captain'
         redirect_to new_team_path
       else
-        redirect_to teams_path
+        redirect_to new_users_join_team_path
       end
     else
       render 'edit'
