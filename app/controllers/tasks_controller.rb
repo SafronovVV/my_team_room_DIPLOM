@@ -10,13 +10,9 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
-    @task.team_id = current_user.team.id
-    if @task.save
-      if @task.parent_task_id
-        @parent_task = Task.find(@task.parent_task_id)
-        @parent_task.subtasks << @task
-      end
-      @task.appointed_to.appointed_tasks << @task
+    @user = current_user
+    @create_service = Task::CreateService.new({task: @task, user: @user})
+    if @create_service.call
       flash[:success] = 'Task was created!'
       redirect_to tasks_path
     else
@@ -25,17 +21,12 @@ class TasksController < ApplicationController
     end
   end
 
-  def edit
-    @comments = @comments.order('created_at DESC')
-  end
+  def edit; end
 
   def update
     @last_user = @task.appointed_to
     if @task.update_attributes(update_params)
-      if @task.appointed_to != @last_user
-        @last_user.appointed_tasks.delete(@task)
-        @task.appointed_to.appointed_tasks << @task
-      end
+      Task::AppointmentService.new({task: @task, last_user: @last_user}).call
       redirect_to tasks_path
     else
       render :edit
@@ -58,11 +49,13 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :status, :priority, :task_type, :percentage, :appointed_to_id, :parent_task_id)
+    params.require(:task).permit(:name, :description,
+                  :status, :priority, :task_type, :percentage,
+                  :appointed_to_id, :parent_task_id)
   end
 
   def find_comments
-    @comments = @task.comments
+    @comments = @task.comments.order('created_at DESC')
   end
 
   def new_comment
