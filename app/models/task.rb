@@ -8,9 +8,9 @@ class Task < ApplicationRecord
   belongs_to :parent_task, class_name: 'Task', optional: true
 
 
-  enum status: { opened: 0, in_progress: 1, code_review: 2, repair: 3, deffered: 4, closed: 5 }
-  enum priority: { low: 0, normal: 1, high: 2, urgent: 3 }
-  enum task_type: { development: 0, improvement: 1, supporting: 2, fixing: 3, testing: 4 }
+  enum status: { "Открыта" => 0, "В процессе" => 1, "Проверяется" => 2, "Исправляется" => 3, "Отложена"=> 4, "Закрыта" => 5 }
+  enum priority: { "Низкий" => 0, "Обычный" => 1, "Высокий" => 2, "Срочный" => 3 }
+  enum task_type: { "Разработка" => 0, "Улучшение" => 1, "Поддержка" => 2, "Исправление" => 3, "Тестирование" => 4 }
 
   validates :name, :status, :priority, :task_type, :appointed_to_id, presence: true
   validates :name, length: { in: 5..30 }

@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     @user = current_user
     @create_service = Task::CreateService.new({task: @task, user: @user})
     if @create_service.call
-      flash[:success] = 'Task was created!'
+      flash[:success] = 'Задача создана!'
       redirect_to tasks_path
     else
       flash[:error] = record_errors(@task)
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @q = current_user.team.tasks.where.not(status: :closed).ransack(params[:q])
+    @q = current_user.team.tasks.where.not(status: "Закрыта").ransack(params[:q])
     @tasks = @q.result(distinct: true)
   end
 

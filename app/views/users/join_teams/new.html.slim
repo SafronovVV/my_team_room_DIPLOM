@@ -1,4 +1,4 @@
-h3 = "Join your team"
+h3 = "Присоединиться к команде"
 - @teams.each do |team|
   .row.tr_team_block
     .col-md-11
@@ -6,4 +6,4 @@ h3 = "Join your team"
     .col-md-1
       = link_to users_join_team_path(team), method: :post, class: 'tr_link'
         .fa.fa-2x.fa-sign-in
-= link_to 'Back to role', edit_users_team_role_path(current_user)
+= link_to 'Назад к роли', edit_users_team_role_path(current_user)

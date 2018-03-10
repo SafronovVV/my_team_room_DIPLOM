@@ -1,5 +1,3 @@
-/ h2 User profile
-/ hr
 .row.user-profile
   .col-md-3.avatar-block
     .image-block
@@ -7,13 +5,13 @@
     -if current_user == @user
       = link_to edit_users_setting_path(current_user), class: 'tr_submit_button'
         .fa.fa-cog
-        |&nbspSettings
+        |&nbspНастройки
   .col-md-8.user-profile-info
     h3 = '@' + @user.username
     h4 = @user.team_role.humanize
     .profile-info-block
       .fa.fa-map-marker
-      b = ' Team: '
+      b = ' Команда: '
       = @user.team.name
     .profile-info-block
       .fa.fa-envelope
@@ -21,13 +19,9 @@
       = @user.email
     .profile-info-block
       .fa.fa-tasks
-      b = ' Appointed tasks: '
+      b = ' Количество задач: '
       = @user.appointed_tasks.count
     .profile-info-block
       .fa.fa-birthday-cake
-      b = ' Registered: '
+      b = ' Зарегистрирован: '
       = @user.created_at.strftime('%d.%m.%y')
-
-
-
-

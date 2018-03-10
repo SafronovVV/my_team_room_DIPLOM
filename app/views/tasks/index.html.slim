@@ -2,13 +2,12 @@ table.table
   thead
     tr
       th = sort_link(@q, :id, '#')
-      th.hidden-xs = sort_link(@q, :name, 'Theme')
-      th = sort_link(@q, :status, 'Status')
-      th.hidden-xs = sort_link(@q, :priority, 'Priority')
-      th.hidden-xs = sort_link(@q, :task_type, 'Task type')
-      th = sort_link(@q, :percentage, 'Ready')
-      th = sort_link(@q, :appointed_to_id, 'Appointed to')
-      th.hidden-xs = sort_link(@q, :updated_at, 'Updated')
+      th.hidden-xs = sort_link(@q, :name, 'Тема')
+      th = sort_link(@q, :status, 'Статус')
+      th.hidden-xs = sort_link(@q, :priority, 'Приоритет')
+      th.hidden-xs = sort_link(@q, :task_type, 'Вид задачи')
+      th = sort_link(@q, :percentage, 'Готовность')
+      th = sort_link(@q, :appointed_to_id, 'Назначена')
+      th.hidden-xs = sort_link(@q, :updated_at, 'Обновлена')
   tbody
     = render @tasks
-

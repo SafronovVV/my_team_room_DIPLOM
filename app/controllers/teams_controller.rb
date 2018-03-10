@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
     if @team.save && @team.users << @user
       @chat = Chat.create!(team_id: @team.id)
       @user.update(joined_team: true, chose_role: true)
-      flash[:success] = 'You created a team!'
+      flash[:success] = 'Вы создали команду!'
       redirect_to root_path
     else
       flash[:error] = record_errors(@team)

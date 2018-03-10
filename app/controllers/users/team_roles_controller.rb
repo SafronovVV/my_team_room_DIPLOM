@@ -6,7 +6,7 @@ class Users::TeamRolesController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      if @user.team_role == 'captain'
+      if @user.team_role == 'Капитан'
         redirect_to new_team_path
       else
         redirect_to new_users_join_team_path

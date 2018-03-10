@@ -1,7 +1,7 @@
 .panel.panel-primary
   .panel-heading
     span.glyphicon.glyphicon-comment
-    = ' Chat'
+    = ' Чат'
   .panel-body#messages-block
     ul#messages.chat[data-chat-id="#{current_user.team.chat.id}"]
       = render @messages.order(:created_at)
@@ -11,7 +11,4 @@
         input#btn-input.form-control.input-sm[data-behavior='chat_speaker']
         span.input-group-btn
           button#btn-chat.btn.btn-primary.btn-sm[data-behavior='chat_speaker']
-            | Send
-
-
-
+            | Отправить

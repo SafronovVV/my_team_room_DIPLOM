@@ -1,9 +1,9 @@
 
-h2 = "New team"
+h2 = "Новая команда"
 = form_for @team, url: { action: :create } do |f|
   .tr_form_group
-    = f.label :name
+    = f.label "Название"
     = f.text_field :name, class: 'tr_form_control'
   .tr_form_group
-    = f.submit 'Create', class: 'tr_submit_button tr_form_control'
-  = link_to 'Back to role', edit_users_team_role_path(current_user), { class: 'tr_link' }
+    = f.submit 'Создать', class: 'tr_submit_button tr_form_control'
+  = link_to 'Назад к роли', edit_users_team_role_path(current_user), { class: 'tr_link' }

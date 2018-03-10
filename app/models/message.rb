@@ -4,6 +4,6 @@ class Message < ApplicationRecord
   belongs_to :chat
 
   after_create_commit { MessageBroadcastJob.perform_later self }
-  validates :body, presence: true, length: { maximum: 150, message: "Message is too long" }
+  validates :body, presence: true, length: { maximum: 150, message: "Сообщение очень длинное" }
 
 end

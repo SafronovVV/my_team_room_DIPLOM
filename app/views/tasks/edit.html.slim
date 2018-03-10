@@ -15,44 +15,40 @@
     thead
       tr
         th = '#'
-        th.hidden-xs = 'Theme'
-        th = 'Status'
-        th.hidden-xs = 'Priority'
-        th.hidden-xs = 'Task type'
-        th = 'Ready'
-        th = 'Appointed to'
-        th.hidden-xs = 'Updated'
+        th.hidden-xs = 'Тема'
+        th = 'Статус'
+        th.hidden-xs = 'Приоритет'
+        th.hidden-xs = 'Вид задачи'
+        th = 'Готовность'
+        th = 'Назначена'
+        th.hidden-xs = 'Обновлена'
     tbody
       = render @task.subtasks
 .row
   .col-md-9
     = form_for @task, url: { action: :update } do |f|
-      / .tr_form_group
-      /   = f.label 'Theme'
-      /   = f.text_field :name, class: 'tr_form_control'
       .tr_form_group
-        = f.label :description
+        = f.label "Описание"
         = f.text_area :description, class: 'tr_form_control'
       .tr_form_group
-        = f.label :status
+        = f.label "Статус"
         br
         = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }
       .tr_form_group
-        = f.label :priority
+        = f.label "Приоритет"
         br
         = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }
       .tr_form_group
-        = f.label 'Ready'
+        = f.label 'Готовность'
         br
         = f.select :percentage, options_for_select((0..100).step(10).to_a.map{|s| ["#{s}%", s]}, @task.percentage)
       .tr_form_group
-        = f.label 'Appointed to'
+        = f.label 'Назначена'
         br
-        = f.select :appointed_to_id, @task.team.users.to_a.map { |w| [w.username, w.id] }
-      = f.submit 'Update', class: 'tr_submit_button'
+        = f.select :appointed_to_id, @task.team.active_users.to_a.map { |w| [w.username, w.id] }
+      = f.submit 'Обновить', class: 'tr_submit_button'
     hr
   .col-md-12.comments-block
-    h3 = @comments.count.to_s + ' comments'
+    h3 = @comments.count.to_s + ' комментариев'
     = render partial: '/comments/comment_form'
     = render partial: '/comments/comments'
-

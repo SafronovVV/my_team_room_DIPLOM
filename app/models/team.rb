@@ -6,4 +6,8 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { in: 3..30 }
 
+  def active_users
+    users.where(joined_team: true)
+  end
+
 end

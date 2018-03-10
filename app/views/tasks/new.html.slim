@@ -2,29 +2,29 @@
   .col-md-9
     = form_for @task, url: { action: :create } do |f|
       .tr_form_group
-        = f.label 'Theme'
+        = f.label 'Тема'
         = f.text_field :name, class: 'tr_form_control'
       .tr_form_group
-        = f.label :description
+        = f.label "Описание"
         = f.text_area :description, class: 'tr_form_control'
       .tr_form_group
-        = f.label 'Type'
+        = f.label 'Тип задачи'
         br
         = f.select :task_type, Task.task_types.keys.to_a.map { |w| [w.humanize, w] }
       .tr_form_group
-        = f.label :status
+        = f.label "Статус"
         br
         = f.select :status, Task.statuses.keys.to_a.map { |w| [w.humanize, w] }
       .tr_form_group
-        = f.label :priority
+        = f.label "Приоритет"
         br
         = f.select :priority, Task.priorities.keys.to_a.map { |w| [w.humanize, w] }
       .tr_form_group
-        = f.label 'Appointed to'
+        = f.label 'Назначена'
         br
-        = f.select :appointed_to_id, options_for_select(current_user.team.users.collect{ |u| [u.username, u.id] })
+        = f.select :appointed_to_id, options_for_select(current_user.team.active_users.collect{ |u| [u.username, u.id] })
       .tr_form_group
-        = f.label 'Parent_task'
+        = f.label 'Родительская задача'
         br
-        = f.select :parent_task_id, options_for_select(current_user.team.tasks.collect{ |task| [task.name, task.id] }), {include_blank: 'No parent'}
-      = f.submit 'Create', class: 'tr_submit_button'
+        = f.select :parent_task_id, options_for_select(current_user.team.tasks.collect{ |task| [task.name, task.id] }), {include_blank: 'Нет'}
+      = f.submit 'Создать', class: 'tr_submit_button'

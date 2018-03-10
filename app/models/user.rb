@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_attached_file :avatar, styles: { profile: '200x200#' }, default_url: "default_user_logo.png"
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\z}
 
-  enum team_role: { member: 0, captain: 1 }
+  enum team_role: { "Пользователь" => 0, "Капитан" => 1 }
 
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable

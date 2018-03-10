@@ -7,7 +7,7 @@ class Users::SettingsController < ApplicationController
   def update
     if @user.update_attributes(settings_params)
       redirect_to request.referrer
-      flash[:success] = 'You updated your profile!'
+      flash[:success] = 'Вы обновили профиль!'
     else
       flash[:error] = record_errors(@user)
       render 'edit'

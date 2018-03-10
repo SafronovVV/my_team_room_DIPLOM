@@ -11,14 +11,13 @@
         li
           = link_to new_task_path
             .fa.fa-plus
-            | &nbspNew task
+            | &nbspНовая задача
       ul.nav.navbar-nav.navbar-right
         li
           = link_to edit_users_setting_path(current_user)
             .fa.fa-cog
-            | &nbspSettings
+            | &nbspНастройки
         li
           = link_to destroy_user_session_path, method: :delete
             span.glyphicon.glyphicon-log-in
-            | Exit
-
+            | Выйти

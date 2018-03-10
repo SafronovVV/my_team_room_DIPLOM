@@ -1,5 +1,5 @@
 
-h2 = 'Log in'
+h2 = 'Вход'
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   = devise_error_messages!
@@ -7,8 +7,8 @@ h2 = 'Log in'
     = f.label :username
     = f.text_field :username, class: 'tr_form_control'
   .form-group
-    = f.label :password
+    = f.label "Пароль"
     = f.password_field :password, class: 'tr_form_control'
   .tr_form_group
-    = f.submit 'Log in', class: 'tr_submit_button tr_form_control'
+    = f.submit 'Войти', class: 'tr_submit_button tr_form_control'
   = render "devise/shared/links"
