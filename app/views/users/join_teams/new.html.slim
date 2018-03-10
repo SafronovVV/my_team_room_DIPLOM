@@ -1,7 +1,7 @@
 h3 = "Join your team"
 - @teams.each do |team|
   .row.tr_team_block
-    .col-md-10
+    .col-md-11
       p.tr_team_name = team.name
     .col-md-1
       = link_to users_join_team_path(team), method: :post, class: 'tr_link'
