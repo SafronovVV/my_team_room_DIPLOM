@@ -1,40 +1,9 @@
-- if task.low?
-  tr.success
+  tr class = table_row_class(task.priority)
     td = link_to task.id, edit_task_path(task)
     td.hidden-xs = link_to task.name, edit_task_path(task)
     td = task.status.humanize
     td.hidden-xs = task.priority.humanize
     td.hidden-xs = task.task_type.humanize
-    td = "#{task.percentage}%"
-    td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
-    td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
--elsif task.normal?
-  tr.active
-    td = link_to task.id, edit_task_path(task)
-    td.hidden-xs = link_to task.name, edit_task_path(task)
-    td = task.status.humanize
-    td.hidden-xs = task.priority.humanize
-    td.hidden-xs = task.task_type.humanize
-    td = "#{task.percentage}%"
-    td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
-    td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
--elsif task.high?
-  tr.warning
-    td = link_to task.id, edit_task_path(task)
-    td.hidden-xs = link_to task.name, edit_task_path(task)
-    td = task.status.humanize
-    td.hidden-xs = task.priority.humanize
-    td.hidden-xs = task.task_type.humanize
-    td = "#{task.percentage}%"
-    td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
-    td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
--else
-  tr.danger
-    td = link_to task.id, edit_task_path(task)
-    td.hidden-xs = link_to task.name, edit_task_path(task)
-    td = task.status.humanize
-    td.hidden-xs = task.priority.humanize
-    td.hidden-xs= task.task_type.humanize
     td = "#{task.percentage}%"
     td = link_to "@#{task.appointed_to.username }", user_path(task.appointed_to)
     td.hidden-xs = task.updated_at.strftime('%d.%m.%y %H:%M')
