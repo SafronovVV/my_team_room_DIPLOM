@@ -1,4 +1,5 @@
 class Users::JoinTeamsController < ApplicationController
+  before_action :authorize!
   before_action :find_user
 
   def new
@@ -7,10 +8,9 @@ class Users::JoinTeamsController < ApplicationController
 
   def create
     @team = Team.find(params[:id])
-    if @user.update_attributes(joined_team: true, chose_role: true)
+    if @user.update_attributes(chose_role: true)
       @team.users << @user
-      flash[:success] = 'You joined a team!'
-      redirect_to root_path
+      redirect_to static_screens_expect_invitation_path
     else
       render 'new'
       flash[:error] = record_errors(@user)
@@ -18,6 +18,9 @@ class Users::JoinTeamsController < ApplicationController
   end
 
   private
+  def authorize!
+    redirect_to root_path if user_policy.joined_team?
+  end
 
   def find_user
     @user = current_user

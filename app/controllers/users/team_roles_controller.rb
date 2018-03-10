@@ -1,6 +1,5 @@
 class Users::TeamRolesController < ApplicationController
-
-  before_action :restrict_roles
+  before_action :authorize!
   before_action :find_user, only: [:edit, :update]
 
   def edit;end
@@ -27,7 +26,7 @@ class Users::TeamRolesController < ApplicationController
     params.require(:user).permit(:team_role)
   end
 
-  def restrict_roles
-    redirect_to root_path if current_user.chose_role?
+  def authorize!
+    redirect_to root_path if user_policy.chose_role?
   end
 end

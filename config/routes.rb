@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :join_teams, only: :new
     post '/:id/join_team' => '/users/join_teams#create', as: 'join_team'
   end
+  namespace :static_screens do
+    get '/expect_invitation' => '/static_screens#expect_invitation', as: 'expect_invitation'
+  end
 
   mount ActionCable.server => '/cable'
 end

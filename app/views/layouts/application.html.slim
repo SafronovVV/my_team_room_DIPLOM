@@ -20,7 +20,7 @@ html(data={the_log: Rails.env.development?})
 
     = csrf_meta_tags
     body
-      - if user_signed_in? && current_user.chose_role? && current_user.joined_team?
+      - if user_policy.fully_registered?
         = render partial: 'layouts/header/header'
         .container-fluid
           .row

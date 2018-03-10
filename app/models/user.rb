@@ -21,8 +21,4 @@ class User < ApplicationRecord
   def team
     teams.first
   end
-
-  def completed_registration?
-    chose_role? && joined_team?
-  end
 end

@@ -16,12 +16,28 @@ class ApplicationController < ActionController::Base
   end
 
   def get_messages
-    if user_signed_in? && current_user.chose_role? && current_user.joined_team?
+    if user_policy.fully_registered?
       @messages = current_user.team.chat.messages
     end
   end
 
-  def registration_completed?
-    redirect_to edit_users_team_role_path(current_user) unless current_user.completed_registration?
+  def user_policy
+    @user_policy ||= UserPolicy.new(current_user)
   end
+
+  def global_accessibility
+    redirect_to select_path unless user_policy.fully_registered?
+  end
+
+  def select_path
+    if !user_policy.chose_role?
+      edit_users_team_role_path(current_user)
+    elsif user_policy.not_joined_team?
+      new_users_join_team_path
+    elsif user_policy.expect_invitation?
+      static_screens_expect_invitation_path
+    end
+  end
+
+  helper_method :user_policy
 end

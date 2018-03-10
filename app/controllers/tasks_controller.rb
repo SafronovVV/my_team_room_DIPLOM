@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
-
-  before_action :registration_completed?
+  before_action :global_accessibility
   before_action :find_task, only: [:edit, :update]
   before_action :find_comments, :new_comment, only: :edit
 
