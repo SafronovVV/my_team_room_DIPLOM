@@ -14,9 +14,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require vue
 //= require_tree .
 
 $(document).ready(() => {
+  activeLink();
+});
+
+function activeLink(){
   const current_path = window.location.pathname;
   $(`a[href='${current_path}']`).parent().addClass('current');
-});
+}
