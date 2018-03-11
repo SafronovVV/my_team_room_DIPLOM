@@ -10,4 +10,7 @@ class Team < ApplicationRecord
     users.where(joined_team: true)
   end
 
+  def applicants
+    users.where(joined_team: false)
+  end
 end

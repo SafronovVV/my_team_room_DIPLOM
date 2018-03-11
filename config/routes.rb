@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :messages
   resources :users, only: [:show]
-  put '/teams/:id/update' => 'teams#update', as: 'update_team'
-  resources :teams, only: [:new, :create]
+  resources :teams, only: [:new, :create, :edit, :update]
   root 'tasks#index'
 
   namespace :users  do

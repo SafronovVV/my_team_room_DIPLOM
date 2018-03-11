@@ -1,0 +1,28 @@
+= form_for @team do |f|
+  .tr_form_group
+    = f.label 'Название'
+    = f.text_field :name, class: 'tr_form_control'
+  .tr_form_group
+    = f.submit 'Обновить', class: 'tr_submit_button'
+h2 Члены команды
+table.table
+  thead
+    tr
+      th Username
+      th Роль
+  tbody
+  - @team.active_users.each do |user|
+      tr
+        td = user.username
+        td = user.team_role
+h2 Заявки на вступление
+table.table
+  thead
+    tr
+      th Username
+      th Роль
+  tbody
+  - @team.applicants.each do |user|
+      tr
+        td = user.username
+        td = user.team_role

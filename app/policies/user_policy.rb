@@ -23,4 +23,8 @@ class UserPolicy
   def not_joined_team?
     user && !user.joined_team? && user.team.nil?
   end
+
+  def able_to_edit_team?
+    user && user.team_role == 'Капитан' && user.team.captain == user
+  end
 end
