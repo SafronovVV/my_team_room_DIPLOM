@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authorize_for_create!, only: [:new, :create]
   before_action :find_user
-  before_action :authorize_for_update!, :find_team, only: [:edit, :update]
+  before_action :authorize_for_update!, :find_team, only: [:edit, :update, :perform_invitation]
 
   def new
     @team = @user.teams.new
@@ -30,6 +30,25 @@ class TeamsController < ApplicationController
     else
       render 'edit'
       flash[:error] = record_errors(@team)
+    end
+  end
+
+  def perform_invitation
+    puts params[:invite]
+    @applicant = User.find(params[:user_id])
+    if params[:invite] == "true"
+      if @applicant.update(joined_team: true)
+        redirect_to request.referrer
+        flash[:success] = 'Вы добавили пользователя!'
+      else
+        render 'edit'
+        flash[:error] = record_errors(@applicant)
+      end
+    else
+      @applicant.teams.delete(@team)
+      @team.users.delete(@applicant)
+      flash[:success] = 'Вы отклонили заявку!'
+      render 'edit'
     end
   end
 

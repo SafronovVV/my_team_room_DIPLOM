@@ -17,6 +17,9 @@
             = link_to edit_team_path(current_user.team)
               i.fa.fa-users
               | &nbspКоманда
+              - if current_user.team.applicants.length > 0
+                |&nbsp
+                span.badge = current_user.team.applicants.count
       ul.nav.navbar-nav.navbar-right
         li
           = link_to edit_users_setting_path(current_user)
