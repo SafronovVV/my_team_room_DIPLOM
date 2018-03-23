@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: 115a50628baceeac5cc37363db082e3f5ba03c76
+  specs:
+    ckeditor (4.2.4)
+      orm_adapter (~> 0.5.0)
+      terrapin
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,6 +207,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -232,6 +242,7 @@ DEPENDENCIES
   actioncable
   byebug
   capybara (~> 2.13)
+  ckeditor!
   coffee-rails (~> 4.2)
   devise
   font-awesome-rails

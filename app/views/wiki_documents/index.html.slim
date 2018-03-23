@@ -1,0 +1,14 @@
+- if @documents.length == 0
+  h2 Нет документов
+= link_to 'Создать', new_wiki_document_path, class: 'btn tr_submit_button', id: 'doc_create_form_link'
+- if @documents.length > 0
+  table.table
+    thead
+      tr
+        th Документ
+        th Создан
+    tbody
+      - @documents.each do |document|
+        tr
+          td = link_to document.title, edit_wiki_document_path(document)
+          td = document.created_at.strftime('%d.%m.%y')

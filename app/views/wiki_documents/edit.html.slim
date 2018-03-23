@@ -1,0 +1,15 @@
+.row.wiki_doc_info
+  .col-md-2
+    h4.wiki_doc_info_header Заголовок
+  .col-md-1
+    a.wiki_doc_info_link href="#"
+      i.fa.fa-pencil-square-o
+  .col-md-12
+    p = @document.title
+  .col-md-2
+    h4.wiki_doc_info_header Содержание
+  .col-md-1
+    a.wiki_doc_info_link href="#"
+      i.fa.fa-pencil-square-o
+  .col-md-12
+    = sanitize @document.body

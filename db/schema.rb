@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207173033) do
+ActiveRecord::Schema.define(version: 20180311145110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 20171207173033) do
     t.datetime "avatar_updated_at"
     t.integer "interface_color"
     t.index ["email", "username"], name: "index_users_on_email_and_username", unique: true
+  end
+
+  create_table "wiki_documents", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_wiki_documents_on_team_id"
   end
 
   add_foreign_key "tasks", "users", column: "appointed_to_id"

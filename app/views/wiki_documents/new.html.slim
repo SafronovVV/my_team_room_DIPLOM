@@ -1,0 +1,9 @@
+= form_for @document do |f|
+  .tr_form_group
+    = f.label 'Заголовок'
+    = f.text_field :title, class: 'tr_form_control'
+  .tr_form_group
+    = f.label 'Содержание'
+    = f.cktext_area :body, class: 'tr_form_control', ckeditor: {toolbar: 'mini'}
+  .tr_form_group
+    = f.submit 'Создать', class: 'tr_submit_button'

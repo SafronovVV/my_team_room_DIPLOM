@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :users, only: [:show]
   resources :teams, only: [:new, :create, :edit, :update]
+  resources :wiki_documents
   put '/teams/:id/perform_invitation' => 'teams#perform_invitation', as: 'perform_invitation'
   root 'tasks#index'
 

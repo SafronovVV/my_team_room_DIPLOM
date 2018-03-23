@@ -20,6 +20,10 @@
               - if current_user.team.applicants.length > 0
                 |&nbsp
                 span.badge = current_user.team.applicants.count
+        li
+          = link_to wiki_documents_path
+            i.fa.fa-file-text
+            |&nbspДокументы
       ul.nav.navbar-nav.navbar-right
         li
           = link_to edit_users_setting_path(current_user)

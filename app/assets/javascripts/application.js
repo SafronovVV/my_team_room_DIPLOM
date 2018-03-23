@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor/init
 //= require twitter/bootstrap
 //= require vue
 //= require_tree .

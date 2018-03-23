@@ -8,6 +8,8 @@ html(data={the_log: Rails.env.development?})
 
     = stylesheet_link_tag :application,
       'data-turbolinks-track' => true, media: :all
+    = javascript_include_tag :application, 'data-turbolinks-track' => true
+
     / FONTS
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,
     300,300italic,400italic,600,600italic,700,700italic&subset=latin,
@@ -35,4 +37,3 @@ html(data={the_log: Rails.env.development?})
               .col-md-6.col-md-offset-3.tr_login_modal.tr_register_modal.tr_role_modal.tr_team_select_modal
                 = flash_messages
                 = yield
-      = javascript_include_tag :application, 'data-turbolinks-track' => true

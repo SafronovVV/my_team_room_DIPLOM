@@ -3,6 +3,7 @@ class Team < ApplicationRecord
   belongs_to :captain, class_name: 'User'
   has_many :tasks
   has_one :chat
+  has_many :wiki_documents
 
   validates :name, presence: true, uniqueness: true, length: { in: 3..30 }
 

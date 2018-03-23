@@ -16,6 +16,7 @@ gem 'ransack'
 gem 'paperclip'
 gem 'redis'
 gem 'vuejs-rails'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
