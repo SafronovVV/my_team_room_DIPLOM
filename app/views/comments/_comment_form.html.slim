@@ -1,4 +1,7 @@
-= form_for @comment, url: { controller: "comments", action: "create", task_id: @task.id }, html: { method: :post } do |f|
   .tr_form_group
-    = f.text_field :body, class: 'tr_form_control'
-  = f.submit 'Добавить комментарий', class: 'tr_submit_button'
+    input.tr_form_control#comment_body
+  button.btn.tr_submit_button [ data-user-name = current_user.username
+                             data-user-id = current_user.id
+                             data-task-id = @task.id
+                             data-user-avatar = current_user.avatar.url
+                             onclick="postNewComment(this)" ] Добавить комментарий

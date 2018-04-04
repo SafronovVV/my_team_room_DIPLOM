@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @task.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to request.referrer
+      render json: {}, status: 200
     else
       redirect_to request.referrer
     end
