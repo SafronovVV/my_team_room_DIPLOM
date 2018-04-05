@@ -1,16 +1,17 @@
 .row
-  .col-md-11
+  .col-md-12
     h2 = '#' + @task.id.to_s + ' - ' + @task.name
   - if @task.parent_task
-    .col-md-1
-      = link_to edit_task_path(@task.parent_task)
-        .fa.fa-arrow-up
+    .col-md-12
+      p
+        b Родительская задача - 
+        = link_to "##{@task.parent_task.id} - #{@task.parent_task.name}", edit_task_path(@task.parent_task)
 .progress
   .progress-bar role="progressbar" style="width:#{@task.percentage}%"
     - if @task.percentage != 0
       = "#{@task.percentage}%"
 - if @task.subtasks.length > 0
-  h3 Subtasks
+  h3 Подзадачи
   table.table
     thead
       tr
@@ -49,6 +50,6 @@
       = f.submit 'Обновить', class: 'tr_submit_button'
     hr
   .col-md-12.comments-block
-    h3 = @comments.count.to_s + ' комментариев'
+    h3#comments-number = @comments.count.to_s + ' комментариев'
     = render partial: '/comments/comment_form'
     = render partial: '/comments/comments'

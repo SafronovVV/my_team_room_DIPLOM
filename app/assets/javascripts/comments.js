@@ -32,6 +32,8 @@ function postNewComment (element) {
   if (commentContent == "") return;
   requestService.post(() => {
     $('input#comment_body').val("");
+    let commentsNumber = parseInt($('h3#comments-number').text().split(' ')[0]) + 1;
+    $('h3#comments-number').text(commentsNumber + " комментариев");
     $('button.btn.tr_submit_button').after(commentBlockTemplate);
   });
 }
