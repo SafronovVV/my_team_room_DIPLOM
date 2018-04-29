@@ -12,6 +12,10 @@
           = link_to new_task_path
             .fa.fa-plus
             | &nbspНовая задача
+        li onclick="toggleChat()"
+          a href="#"
+            i.fa.fa-comment aria-hidden="true"
+            | &nbspЧат
         - if user_policy.able_to_edit_team?
           li
             = link_to edit_team_path(current_user.team)

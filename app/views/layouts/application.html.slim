@@ -24,9 +24,9 @@ html(data={the_log: Rails.env.development?})
         = render partial: 'layouts/header/header'
         .container-fluid
           .row
-            .col-md-4.hidden-xs
+            .col-md-4.chat-block.hidden-xs
               = render partial: 'messages/messages', cached: true
-            .col-md-8.col-xs-12
+            .col-md-8.col-xs-12.issues-block
               = flash_messages
               = yield
 

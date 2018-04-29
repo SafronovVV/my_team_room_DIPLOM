@@ -20,9 +20,21 @@
 
 $(document).ready(() => {
   activeLink();
+  displayChat(localStorage.getItem('displayChat'));
 });
 
 function activeLink(){
   const current_path = window.location.pathname;
   $(`a[href='${current_path}']`).parent().addClass('current');
+}
+
+function toggleChat() {
+  localStorage.setItem('displayChat', localStorage.getItem('displayChat') == "true" ? false : true);
+  displayChat(localStorage.getItem('displayChat'));
+}
+
+function displayChat(value){
+    let display = value == 'true';
+    $('.chat-block').css('display', display ? '' : 'none');
+    $('.issues-block').addClass(display ? 'col-md-8' : 'col-md-12').removeClass(display ? 'col-md-12' : 'col-md-8');
 }
