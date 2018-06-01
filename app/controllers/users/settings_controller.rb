@@ -17,7 +17,7 @@ class Users::SettingsController < ApplicationController
   private
 
   def settings_params
-    params.require(:user).permit(:username, :email, :avatar, :password, :interface_color)
+    params.require(:user).permit(:username, :email, :avatar, :password)
   end
 
   def find_user

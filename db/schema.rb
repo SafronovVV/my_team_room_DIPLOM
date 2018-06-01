@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 20180311145110) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "interface_color"
     t.index ["email", "username"], name: "index_users_on_email_and_username", unique: true
   end
 
