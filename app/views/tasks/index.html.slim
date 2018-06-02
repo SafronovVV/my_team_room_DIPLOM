@@ -1,13 +1,46 @@
-table.table
-  thead
-    tr
-      th = sort_link(@q, :id, '#')
-      th.hidden-xs = sort_link(@q, :name, 'Тема')
-      th = sort_link(@q, :status, 'Статус')
-      th.hidden-xs = sort_link(@q, :priority, 'Приоритет')
-      th.hidden-xs = sort_link(@q, :task_type, 'Вид задачи')
-      th = sort_link(@q, :percentage, 'Готовность')
-      th = sort_link(@q, :appointed_to_id, 'Назначена')
-      th.hidden-xs = sort_link(@q, :updated_at, 'Обновлена')
-  tbody
-    = render @tasks
+.row.isssues-table-settings
+  .col-md-10
+  .col-md-2
+    = link_to users_setting_path(id: current_user, agile_view: !current_user.settings.agile_view), method: :patch, class: 'btn tr_submit_button'
+      - if current_user.settings.agile_view
+        i.fa.fa-table
+      - else
+        i.fa.fa-th
+- if !current_user.settings.agile_view
+  table.table
+    thead
+      tr
+        th = sort_link(@q, :id, '#')
+        th.hidden-xs = sort_link(@q, :name, 'Тема')
+        th = sort_link(@q, :status, 'Статус')
+        th.hidden-xs = sort_link(@q, :priority, 'Приоритет')
+        th.hidden-xs = sort_link(@q, :task_type, 'Вид задачи')
+        th = sort_link(@q, :percentage, 'Готовность')
+        th = sort_link(@q, :appointed_to_id, 'Назначена')
+        th.hidden-xs = sort_link(@q, :updated_at, 'Обновлена')
+    tbody
+      = render @tasks
+- else
+  .row.agile-table-headers
+    - Task.statuses.each do |status|
+      div [class = "col-md-#{12 / Task.statuses.count} agile-table-header"]
+        h5 = "#{status.first} (#{@tasks.where(status: status.first).count})"
+  .row.agile-table-body
+    - Task.statuses.each do |status|
+      div [class = "col-md-#{12 / Task.statuses.count} agile-table-column"]
+        - @tasks.where(status: status.first).each do |task|
+          .agile-table-task-card class = priority_class(task.priority)
+            .task-header
+              = link_to "##{task.id} #{task.name}", edit_task_path(task), class: 'agile-table-task-link'
+            p
+              i.fa.fa-tasks&nbsp
+              = task.task_type
+            p
+              i.fa.fa-comments&nbsp
+              = task.comments.count
+            p
+              i.fa.fa-percent&nbsp
+              = task.percentage
+            .user-block
+              = image_tag task.appointed_to.avatar.url(:profile)
+              p = task.appointed_to.username

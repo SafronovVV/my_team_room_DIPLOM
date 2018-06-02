@@ -1,6 +1,6 @@
 module TasksHelper
-  def table_row_class(task_status)
+  def priority_class(task_priority)
     { "Низкий" => "success", "Обычный" => "active",
-      "Высокий" => "warning", "Срочный" => "danger" }[task_status]
+      "Высокий" => "warning", "Срочный" => "danger" }[task_priority]
   end
 end

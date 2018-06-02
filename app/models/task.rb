@@ -13,7 +13,7 @@ class Task < ApplicationRecord
   enum task_type: { "Разработка" => 0, "Улучшение" => 1, "Поддержка" => 2, "Исправление" => 3, "Тестирование" => 4 }
 
   validates :name, :status, :priority, :task_type, :appointed_to_id, presence: true
-  validates :name, length: { in: 5..30 }
+  validates :name, length: { in: 5..50 }
   validates_numericality_of :percentage, less_than_or_equal_to: 100, greater_than_or_equal_to: 0
   validates :percentage, presence: true
 

@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :appointed_tasks, class_name: 'Task'
   has_one :settings, class_name: 'User::Setting', dependent: :destroy
 
-  after_save :init_settings, on: :create
+  after_create :init_settings
 
   has_attached_file :avatar, styles: { profile: '200x200#' }, default_url: "default_user_logo.png"
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\z}

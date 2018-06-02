@@ -35,3 +35,88 @@ td {
   margin: 20px 0px;
   font-size: 28px;
 }
+.table {
+  margin: 0px 3px;
+}
+.isssues-table-settings {
+  .col-md-2 {
+    text-align: right;
+    .tr_submit_button {
+      padding: 2px 6px;
+      font-size: 20px;
+      border-radius: 0px;
+    }
+  }
+  padding: 5px 5px;
+  background-color: $tr_lightest;
+  min-height: 30px;
+  margin: 0px 3px;
+  margin-bottom: 10px;
+}
+.agile-table-headers {
+  padding: 0px 5px;
+  margin: 0px 3px;
+  .agile-table-header {
+    padding: 5px;
+    h5 {
+      font-weight: bold;
+      margin: 2px 0px;
+    }
+  }
+}
+
+.agile-table-body {
+  background-color: $tr_lightest;
+  padding: 0px 5px;
+  margin: 0px 3px;
+  .agile-table-column {
+    min-height: 600px;
+    padding: 0px 5px;
+
+    .agile-table-task-card {
+      border-radius: 4px;
+      background-color: white;
+      margin: 10px 5px;
+      padding: 5px;
+
+      .task-header {
+        margin-bottom: 10px;
+        a.agile-table-task-link, a.agile-table-task-link:hover {
+          padding-left: 3px;
+          font-weight: bold;
+          color: black;
+          text-decoration: none;
+        }
+      }
+      p {
+        margin-bottom: 2px;
+      }
+      .user-block {
+        margin-bottom: 5px;
+        margin-top: 15px;
+        p {
+          margin-left: 8px;
+          font-size: 16px;
+          display: inline;
+        }
+        img {
+          width: 20px;
+          height: auto;
+          border-radius: 50%;
+        }
+      }
+    }
+    .agile-table-task-card.success {
+      border-left: 5px solid #898989;
+    }
+    .agile-table-task-card.active {
+      border-left: 5px solid #45ba0a;
+    }
+    .agile-table-task-card.warning {
+      border-left: 5px solid #ff7979;
+    }
+    .agile-table-task-card.danger {
+      border-left: 5px solid #fb0909;
+    }
+  }
+}

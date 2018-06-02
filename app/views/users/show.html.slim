@@ -3,7 +3,7 @@
     .image-block
       = image_tag @user.avatar.url(:profile), class: 'profile-photo'
     -if current_user == @user
-      = link_to edit_users_setting_path(current_user), class: 'tr_submit_button'
+      = link_to edit_users_profile_path(current_user), class: 'tr_submit_button'
         .fa.fa-cog
         |&nbspНастройки
   .col-md-8.user-profile-info
