@@ -8,11 +8,8 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = @user.teams.new(team_params)
-    @team.captain_id = @user.id
-    if @team.save && @team.users << @user
-      @chat = Chat.create!(team_id: @team.id)
-      @user.update(joined_team: true, chose_role: true)
+    @team = @user.teams.new(team_params.merge(captain_id: @user.id))
+    if @team.save
       flash[:success] = 'Вы создали команду!'
       redirect_to root_path
     else
