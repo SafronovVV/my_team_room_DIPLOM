@@ -4,6 +4,6 @@
     = f.text_field :title, class: 'tr_form_control'
   .tr_form_group
     = f.label 'Содержание'
-    = f.cktext_area :body, class: 'tr_form_control', ckeditor: {toolbar: 'mini'}
+    = f.cktext_area :body, class: 'tr_form_control', ckeditor: {toolbar: 'documentBasic'}
   .tr_form_group
     = f.submit 'Создать', class: 'tr_submit_button'
